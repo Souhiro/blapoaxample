@@ -15,6 +15,11 @@ public class Calculadora {
         this.valor = 0;
     }
     
+    public void absoluto() {
+        if (this.valor < 0)
+            this.valor = -1*this.valor;
+    }
+    
     public void suma(float num) {
         this.valor = this.valor + num;
     }
