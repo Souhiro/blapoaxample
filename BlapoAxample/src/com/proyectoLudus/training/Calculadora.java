@@ -32,6 +32,6 @@ public class Calculadora {
     }
     
     public float devuelveValor() {
-        return this.valor
+        return this.valor;
     }
 }
