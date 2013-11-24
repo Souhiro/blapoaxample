@@ -39,4 +39,7 @@ public class Calculadora {
     public float devuelveValor() {
         return this.valor;
     }
+    public void opuesto(float num) {/*Esto intenta mostrar el resultado con el signo opuesto */
+        this.valor = this.valor *-1; 
+    }
 }
