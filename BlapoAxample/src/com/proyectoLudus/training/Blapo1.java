@@ -4,6 +4,8 @@
  */
 package com.proyectoLudus.training;
 
+import com.proyectoLudus.training.helloWorld.HelloWorldSWT;
+
 /**
  *
  * @author Souhiro
@@ -15,9 +17,6 @@ public class Blapo1 {
      */
     public static void main(String[] args) {
         
-        System.out.println("Ese es el comienzo. Los mataremos a todos");
-        System.out.println("Deadpool is here, baby");
-        
-        System.out.println("¿Por que no tienen a Edward Skinner investigando la muerte de Alma Cole? Sospechoso...");
+        HelloWorldSWT.createAndShowGUI();
     }
 }
