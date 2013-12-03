@@ -30,7 +30,7 @@ public class Hechizo {
 		this.nombreHechizo = nombreHechizo;
 		this.tipo = tipo;
 		this.danyo = danyo;
-		this.gasto = gasto;
+		this.setGasto(gasto);
 		this.efecto1 = efecto1;
 		this.efecto2 = efecto2;
 		this.efecto3 = efecto3;
@@ -99,5 +99,13 @@ public class Hechizo {
 			return true;
 		else
 			return false;
+	}
+
+	public Integer getGasto() {
+		return gasto;
+	}
+
+	public void setGasto(Integer gasto) {
+		this.gasto = gasto;
 	}
 }

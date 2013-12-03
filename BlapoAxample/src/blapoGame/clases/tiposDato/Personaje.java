@@ -23,80 +23,38 @@ public class Personaje {
 	public Personaje() {
 	}
 	
-	public Personaje(String nombre, boolean sexo, int nivel, int CON, int DEX, int INT, int CHA, int PER) {
-		this(nombre, sexo, nivel, CON, DEX, INT, CHA, PER, CON* nivel, INT * nivel, null, null, null, null, null);
+	public Personaje(String nombre, boolean sexo, int nivel, Atributos atributos) {
+		this(nombre, sexo, nivel, atributos, atributos.getCON()* nivel, atributos.getINT() * nivel, null);
 	}
 	
-	public Personaje(String nombre, boolean sexo, int nivel, int CON, int DEX, int INT, int CHA, 
-			int PER, int HP, int EN) {
-		this(nombre, sexo, nivel, CON, DEX, INT, CHA, PER, HP, EN, null, null, null, null, null);
+	public Personaje(String nombre, boolean sexo, int nivel, Atributos atributos, int HP, int EN) {
+		this(nombre, sexo, nivel,  atributos, HP, EN, null);
 	}
 	
-	public Personaje(String nombre, boolean sexo, int nivel, int CON, int DEX, int INT, int CHA, 
-			int PER, int HP, int EN, Hechizo hechizo1) {
-		this(nombre, sexo, nivel, CON, DEX, INT, CHA, PER, HP, EN, hechizo1, null, null, null, null);
+	public Personaje(String nombre, boolean sexo, int nivel,  Atributos atributos, ListaHechizos listaHechizos) {
+		this(nombre, sexo, nivel,  atributos, atributos.getCON()* nivel, atributos.getINT() * nivel, listaHechizos);
 	}
 	
-	public Personaje(String nombre, boolean sexo, int nivel, int CON, int DEX, int INT, int CHA, 
-			int PER, Hechizo hechizo1) {
-		this(nombre, sexo, nivel, CON, DEX, INT, CHA, PER, CON* nivel,  INT * nivel, hechizo1, null, null, null, null);
-	}
 	
-	public Personaje(String nombre, boolean sexo, int nivel, int CON, int DEX, int INT, int CHA, 
-			int PER, int HP, int EN, Hechizo hechizo1, Hechizo hechizo2) {
-		this(nombre, sexo, nivel, CON, DEX, INT, CHA, PER, HP, EN, hechizo1, hechizo2, null, null, null);
-	}
-	
-	public Personaje(String nombre, boolean sexo, int nivel, int CON, int DEX, int INT, int CHA, 
-			int PER, Hechizo hechizo1, Hechizo hechizo2) {
-		this(nombre, sexo, nivel, CON, DEX, INT, CHA, PER, CON* nivel,  INT * nivel, hechizo1, hechizo2, null, null, null);
-	}
-	
-	public Personaje(String nombre, boolean sexo, int nivel, int CON, int DEX, int INT, int CHA, 
-			int PER, int HP, int EN, Hechizo hechizo1, Hechizo hechizo2, Hechizo hechizo3) {
-		this(nombre, sexo, nivel, CON, DEX, INT, CHA, PER, HP, EN, hechizo1, hechizo2, hechizo3, null, null);
-	}
-	
-	public Personaje(String nombre, boolean sexo, int nivel, int CON, int DEX, int INT, int CHA, 
-			int PER, Hechizo hechizo1, Hechizo hechizo2, Hechizo hechizo3) {
-		this(nombre, sexo, nivel, CON, DEX, INT, CHA, PER, CON* nivel,  INT * nivel, hechizo1, hechizo2, hechizo3, null, null);
-	}
-	
-	public Personaje(String nombre, boolean sexo, int nivel, int CON, int DEX, int INT, int CHA, 
-			int PER, int HP, int EN, Hechizo hechizo1, Hechizo hechizo2, Hechizo hechizo3, Hechizo hechizo4) {
-		this(nombre, sexo, nivel, CON, DEX, INT, CHA, PER, HP, EN, hechizo1, hechizo2, hechizo3, hechizo4, null);
-	}
-	
-	public Personaje(String nombre, boolean sexo, int nivel, int CON, int DEX, int INT, int CHA, 
-			int PER, Hechizo hechizo1, Hechizo hechizo2, Hechizo hechizo3, Hechizo hechizo4) {
-		this(nombre, sexo, nivel, CON, DEX, INT, CHA, PER, CON* nivel, INT * nivel, hechizo1, hechizo2, hechizo3, hechizo4, null);
-	}
-	
-	public Personaje(String nombre, boolean sexo, int nivel, int CON, int DEX, int INT, int CHA, 
-			int PER, Hechizo hechizo1, Hechizo hechizo2, Hechizo hechizo3, Hechizo hechizo4, Hechizo hechizo5) {
-		this(nombre, sexo, nivel, CON, DEX, INT, CHA, PER, CON* nivel, INT * nivel, hechizo1, hechizo2, hechizo3, hechizo4, hechizo5);
-	}
-	
-	public Personaje(String nombre, boolean sexo, int nivel, int CON, int DEX, int INT, int CHA, 
-			int PER, int HP, int EN, Hechizo hechizo1, Hechizo hechizo2, Hechizo hechizo3, 
-			Hechizo hechizo4, Hechizo hechizo5) {
+	public Personaje(String nombre, boolean sexo, int nivel,  Atributos atributos, int HP, int EN, 
+			ListaHechizos listahechizos) {
 		this.nombre = nombre;
 		this.sexo = sexo;
 		this.nivel = nivel;
-		this.CON = CON;
-		this.DEX = DEX;
-		this.INT = INT;
-		this.CHA = CHA;
-		this.PER = PER;
+		this.CON = atributos.getCON();
+		this.DEX = atributos.getDEX();
+		this.INT = atributos.getINT();
+		this.CHA = atributos.getCHA();
+		this.PER = atributos.getPER();
 
 		this.HP = HP;
 		this.EN = EN;
 		
-		this.hechizo1 = hechizo1;
-		this.hechizo2 = hechizo2;
-		this.hechizo3 = hechizo3;
-		this.hechizo4 = hechizo4;
-		this.hechizo5 = hechizo5;
+		this.hechizo1 = listahechizos.getHechizo1();
+		this.hechizo2 = listahechizos.getHechizo2();
+		this.hechizo3 = listahechizos.getHechizo3();
+		this.hechizo4 = listahechizos.getHechizo4();
+		this.hechizo5 = listahechizos.getHechizo5();
 	}
 	
 	public int getENMax() {
