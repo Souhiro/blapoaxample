@@ -23,7 +23,7 @@ public class Game {
 			personaje = CreadorPersonajes.creaElaia();
 		if(idPersonajeElegido == 2) 
 			personaje = CreadorPersonajes.creaHerry();
-		if(idPersonajeElegido == 2) 
+		if(idPersonajeElegido == 3) 
 			personaje = CreadorPersonajes.creaNurgle();
 		
 		System.out.println("Has elegido ser " + personaje.getNombre() + " de nivel " + personaje.getNivel());

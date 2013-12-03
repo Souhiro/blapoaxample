@@ -1,4 +1,4 @@
-package blapoGame.clases.tiposDato;
+package blapoGame.clases.constantes;
 
 public class GameConst {
 	public static int MELEE = 1;
@@ -14,5 +14,6 @@ public class GameConst {
 	public static int EFECTO_VELOCIDAD = 7;
 	public static int EFECTO_ANTIILUSIONES = 8;
 	public static int EFECTO_RETURNER = 9;
+	
 }
 

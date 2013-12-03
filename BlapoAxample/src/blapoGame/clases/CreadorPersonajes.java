@@ -1,7 +1,7 @@
 package blapoGame.clases;
 
+import blapoGame.clases.constantes.GameConst;
 import blapoGame.clases.tiposDato.Atributos;
-import blapoGame.clases.tiposDato.GameConst;
 import blapoGame.clases.tiposDato.Hechizo;
 import blapoGame.clases.tiposDato.ListaHechizos;
 import blapoGame.clases.tiposDato.Personaje;

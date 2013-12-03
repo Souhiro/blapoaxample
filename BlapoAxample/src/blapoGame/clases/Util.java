@@ -11,6 +11,9 @@ public class Util {
 		int resultado;
 		String cadenaResultado = "";
 		
+		System.out.print("\033[H\033[2J");
+		System.out.flush();
+		
 		System.out.println(pregunta);
 		BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 		try {
