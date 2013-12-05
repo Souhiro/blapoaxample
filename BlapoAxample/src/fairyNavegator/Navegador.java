@@ -16,12 +16,12 @@ public class Navegador {
     Scanner scanner1 = new Scanner( System.in );
 	
     public Navegador() {
-    	habitacionActual = mundo.hab1;
+		String comando = "";	// Esta variable será lo que el usuario escriba
     	
-		String comando = "";
-		habitacionActual.describeHabitacion();
+    	habitacionActual = mundo.hab1;			// Tienes que empezar en algun sitio ¿No? La primera habitacion del mundo
+		habitacionActual.describeHabitacion();	// Dale algo al jugador. Escribe que ve en el primer cuarto
 		do {
-			comando = scanner1.nextLine();
+			comando = scanner1.nextLine();	
 			comando = comando.toUpperCase();
 			interpretaComando (comando);
 		} while (!comando.equals(Constantes.COMANDO_SALIR));
@@ -61,6 +61,7 @@ public class Navegador {
 
 		if(lineaComando[0].equals("INVENTARIO")) {
 			System.out.println(inventario.listarInventario());
+			accionTomada = true;
 		}
 
 		if(lineaComando[0].equals("EXAMINAR")) {
@@ -76,7 +77,12 @@ public class Navegador {
 			}
 			accionTomada = true;
 		}
+
+		if(lineaComando[0].equals("SALIR")) {
+			accionTomada = true;
+		}
 		
+			// Si no es ninguna de las acciones que el procesador conoce, ayudaremos al Player y le daremos la lista de lo que SI puede hacer
 		if(!accionTomada) {
 			System.out.println("Los comandos son: NORTE, SUR, ESTE, OESTE, COGER, DEJAR, INVENTARIO, EXAMINAR y por supuesto SALIR");
 		}
@@ -84,6 +90,7 @@ public class Navegador {
 	}
 	
 	private boolean esDireccion(String comando) {
+			// Se usa en varios sitios y es una linea larga. Esta funcion ayuda
 		if(comando.toUpperCase().equals(Constantes.NORTE) || comando.toUpperCase().equals(Constantes.SUR) ||
 				comando.toUpperCase().equals(Constantes.ESTE) || comando.toUpperCase().equals(Constantes.OESTE)) {
 			return true;
