@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import fairyNavegator.clases.Constantes;
 import fairyNavegator.clases.Mundo;
+import fairyNavegator.clases.tiposDato.Accion;
 import fairyNavegator.clases.tiposDato.Habitacion;
 import fairyNavegator.clases.tiposDato.Inventario;
 import fairyNavegator.clases.tiposDato.Nombre;
@@ -23,7 +24,8 @@ public class Navegador {
 		habitacionActual = mundo.hab9; // Tienes que empezar en algun sitio
 		// �No? La primera habitacion del
 		// mundo
-		inventario.objeto1 = mundo.objeto9;
+		inventario.objeto1 = mundo.objeto1;
+		mundo.objeto1.localizacion = Constantes.LOCALIZACION_INVENTARIO;
 		habitacionActual.describeHabitacion(); // Dale algo al jugador. Escribe
 		// que ve en el primer cuarto
 		do {
@@ -77,6 +79,10 @@ public class Navegador {
 				if (mundo.entidadDisponible(lineaComando[3], habitacionActual)) {
 					System.out.println("Usas " + lineaComando[1] + " con "
 							+ lineaComando[3]);
+					Substancia ent1 = mundo.obtenSubstancia(lineaComando[1]);
+					Substancia ent2 = mundo.obtenSubstancia(lineaComando[3]);
+					Accion accion = encuentraAccion(ent1, ent2);
+					accion.resultado.ejecutar(mundo);
 				} else {
 					System.out.println("No hay " + lineaComando[3]
 							+ " a la vista");
@@ -96,9 +102,23 @@ public class Navegador {
 		// al Player y le daremos la lista de lo que SI puede hacer
 		if (!accionTomada) {
 			System.out
-					.println("Los comandos son: NORTE, SUR, ESTE, OESTE, COGER, DEJAR, INVENTARIO, EXAMINAR y por supuesto SALIR");
+					.println("Los comandos son: NORTE, SUR, ESTE, OESTE, COGER, DEJAR, INVENTARIO, EXAMINAR, USAR y por supuesto SALIR");
 		}
 
+	}
+
+	private Accion encuentraAccion(Substancia ent1, Substancia ent2) {
+		Accion accion = null;
+		if(mundo.accion1.ent1.id == ent1.id && mundo.accion1.ent2.id == ent2.id) {
+			accion =  mundo.accion1;
+		}
+		if(mundo.accion2.ent1.id == ent1.id && mundo.accion2.ent2.id == ent2.id) {
+			accion =  mundo.accion2;
+		}
+		if(mundo.accion3.ent1.id == ent1.id && mundo.accion3.ent2.id == ent2.id) {
+			accion =  mundo.accion3;
+		}
+		return accion;
 	}
 
 	private void rutinaCoger(String[] lineaComando, Mundo mundo2) {
