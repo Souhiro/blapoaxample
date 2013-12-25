@@ -1,5 +1,6 @@
 package fairyNavegator.clases;
 
+import fairyNavegator.clases.tiposDato.Accion;
 import fairyNavegator.clases.tiposDato.Habitacion;
 import fairyNavegator.clases.tiposDato.Nombre;
 import fairyNavegator.clases.tiposDato.Objeto;
@@ -41,72 +42,83 @@ public class Mundo {
 	public Nombre nombre8;
 	public Nombre nombre9;
 
+	public Accion accion1;
+	public Accion accion2;
+	public Accion accion3;
+
 	public Mundo() {
 		hab1 = new Habitacion(
-				1,
+				Constantes.HAB_ELAIA,
 				"Esta es tu habitacion, hay una ventana muy linda, una cama cojonuda y un poster de Thamond el Grande",
-				null, 2, null, null, this);
-		hab2 = new Habitacion(2, "Estas en un pasillo normal y corriente", 1,
-				null, 3, null, this);
+				null, Constantes.HAB_PASILLO_1, null, null, this);
+		hab2 = new Habitacion(Constantes.HAB_PASILLO_1, "Estas en un pasillo normal y corriente",
+				Constantes.HAB_ELAIA, null, Constantes.HAB_PASILLO_2, null, this);
 		hab3 = new Habitacion(
-				3,
+				Constantes.HAB_PASILLO_2,
 				"Estas en un pasillo normal y corriente, pero huele a algo sexy",
-				4, 7, 5, 2, this);
+				Constantes.HAB_NURGLE, Constantes.HAB_SALON, Constantes.HAB_PASILLO_3, Constantes.HAB_PASILLO_1, this);
 		hab4 = new Habitacion(
-				4,
+				Constantes.HAB_NURGLE,
 				"Estas en el cuarto de Nurgle Luzpodrida, la Afgana est�a aqui bailoteando y postureando frente a su espejo. Sera presumida!",
-				null, 3, null, null, this);
+				null, Constantes.HAB_PASILLO_2, null, null, this);
 		hab5 = new Habitacion(
-				5,
+				Constantes.HAB_PASILLO_3,
 				"Estas en un pasillo normal y corriente, suena musica, mucha musica",
-				6, null, null, 3, this);
+				Constantes.HAB_KROSSY, null, null, Constantes.HAB_PASILLO_2, this);
 		hab6 = new Habitacion(
-				6,
+				Constantes.HAB_KROSSY,
 				"Este es el cuarto de Krossy. Esta pirada esta ensayando con su guitarra, el transformer Soundwave, y un sintetizador ocho veces mas grande que ella. La rockera esta aqui",
-				null, 5, null, null, this);
+				null, Constantes.HAB_PASILLO_3, null, null, this);
 		hab7 = new Habitacion(
-				7,
+				Constantes.HAB_SALON,
 				"Este es el gran salon de Golden Horn. Esta hecho una mierda porque somos pobres. Hay una fuente que nunca da agua, y un limpiabotas que las ensucia. Aqui esta tu papi, Thamond el Grande",
-				3, 9, 8, null, this);
+				Constantes.HAB_PASILLO_2, Constantes.HAB_SALIDA, Constantes.HAB_COCINA, null, this);
 		hab8 = new Habitacion(
-				8,
+				Constantes.HAB_COCINA,
 				"Estas en la cocina, el lugar que te corresponde como mujer. Los fogones, perolos y estropajos te dan la bienvenida. Enric Sigue el cocinero esta aqui",
 				null, null, null, 7, this);
 		hab9 = new Habitacion(
-				9,
+				Constantes.HAB_SALIDA,
 				"Esta es la salida del Gremio. En la puerta ves a Wynna, el Chicharo de Lis, y no puedes hacer nada con el. Que asco de Chicharo, de verdad",
-				8, null, null, null, this);
+				Constantes.HAB_SALON, null, null, null, this);
 
 		objeto1 = new Objeto(
-				1,
-				"Espada",
-				"Una espada de buen acero. De hecho, es tu espada, y estas jodidamente orgullosa de ella. Haces de todo con ella",
-				1);
+					Constantes.SUB_ESPADA,
+					"Espada",
+					"Una espada de buen acero. De hecho, es tu espada, y estas jodidamente orgullosa de ella. Haces de todo con ella",
+					Constantes.HAB_ELAIA);
 		objeto2 = new Objeto(
-				2,
-				"Poster",
-				"Un poster del grandioso heroe de Fiore, Thamond el Grande. Se parece a ti, posiblemente porque es tu padre",
-				1);
+					Constantes.SUB_POSTER,
+					"Poster",
+					"Un poster del grandioso heroe de Fiore, Thamond el Grande. Se parece a ti, posiblemente porque es tu padre",
+					Constantes.HAB_ELAIA);
 		objeto3 = new Objeto(
-				3,
-				"Tacones",
-				"Unos zapatos de vertigo. Si te los pones ser�s casi medio metro m�s alta. Y no podr�s andar, por supuesto. S�lo Nurgle sabe llevar este tipo de cosas",
-				4);
-		objeto4 = new Objeto(4, "Burhka", "Sin comentarios", 4);
-		objeto5 = new Objeto(5, "Libro",
-				"Esta lleno de canciones y partituras de Krossy", 6);
+					Constantes.SUB_TACONES,
+					"Tacones",
+					"Unos zapatos de vertigo. Si te los pones seras casi medio metro mas alta. Y no podras andar, por supuesto. Solo Nurgle sabe llevar este tipo de cosas",
+					Constantes.HAB_NURGLE);
+		objeto4 = new Objeto(
+					Constantes.SUB_BURHKA, 
+					"Burhka", 
+					"Sin comentarios", 
+					Constantes.HAB_NURGLE);
+		objeto5 = new Objeto(
+					Constantes.SUB_LIBRO,
+					"Libro",
+					"Esta lleno de canciones y partituras de Krossy", 
+					Constantes.HAB_KROSSY);
 		objeto6 = new Objeto(
-				6,
-				"Guitarra",
-				"Si necesitas que te diga que es una guitarra, no estoy seguro de que quiera que sigas jugando a este juego, de verdad",
-				6);
+					Constantes.SUB_GUITARRA,
+					"Guitarra",
+					"Si necesitas que te diga que es una guitarra, no estoy seguro de que quiera que sigas jugando a este juego, de verdad", 
+					Constantes.HAB_KROSSY);
 		objeto7 = new Objeto(
-				7,
+				Constantes.SUB_SARTEN,
 				"Sarten",
 				"Hecha de Teflon-2. Un buen invento creado por Herry Sotters gracias a esta aleacion, hasta tu puedes cocinar",
 				8);
-		objeto8 = new Objeto(8, "Estropajo", "Para que LIMPIES, cochina", 8);
-		objeto9 = new Objeto(9, "Llave", "Abre una puerta cerrada",
+		objeto8 = new Objeto(Constantes.SUB_ESTROPAJO, "Estropajo", "Para que LIMPIES, cochina", 8);
+		objeto9 = new Objeto(Constantes.SUB_LLAVE, "Llave", "Abre una puerta cerrada",
 				Constantes.LOCALIZACION_INVENTARIO);
 
 		hell = new Habitacion(0, "Nunca deberias estar aqui", null, null, null,
@@ -115,52 +127,57 @@ public class Mundo {
 		goatse = new Nombre(0, "GOATSE", "No deberias de ver esto JAMAS", -1);
 
 		nombre1 = new Nombre(
-				1,
+				Constantes.SUB_NURGLE,
 				"Nurgle",
 				"Esta es tu mascota, Nurgle Luzpodrida, una Afgana que utilizais para hacer fanservice",
-				4, Constantes.PERSONA);
+				Constantes.HAB_NURGLE, Constantes.PERSONA);
 		nombre2 = new Nombre(
-				2,
+				Constantes.SUB_KROSSY,
 				"Krossy",
 				"Krossy, la alegria de la huerta y la experta en mantener a tus amigos con vida porque es enfermera. Antes era un tio.",
-				6, Constantes.PERSONA);
+				Constantes.HAB_KROSSY, Constantes.PERSONA);
 		nombre3 = new Nombre(
-				3,
+				Constantes.SUB_THAMOND,
 				"Thamond",
 				"Thamond el Grande, el heroe mas reputado del reino, y tu padre. Por cosas de la magia, se ve mas joven y fuerte que tu",
-				7, Constantes.PERSONA);
+				Constantes.HAB_SALON, Constantes.PERSONA);
 		nombre4 = new Nombre(
-				5,
+				Constantes.SUB_ENRIC,
 				"Enric",
 				"Tu novio Enric Sigue. Antes era feote, pero cuando el autor decidi� que saliarais juntos lo hizo un chicarron",
-				8, Constantes.PERSONA);
+				Constantes.HAB_COCINA, Constantes.PERSONA);
 		nombre5 = new Nombre(
-				6,
+				Constantes.SUB_WYNNA,
 				"Wynna",
 				"Wynna Kesev, la hija de Thamond, tu medio-hermana, y la cosa mas asquerosa que existe, casi te sacrifica de ni�a, momifico a tu padre y torturo a tus amigos",
-				9, Constantes.PERSONA);
+				Constantes.HAB_SALIDA, Constantes.PERSONA);
 		nombre6 = new Nombre(
-				7,
+				Constantes.SUB_CAMA_ELAIA,
 				"Cama",
 				"Cuando el jugador deje de tocarme las narices, me voy a pegar una siesta de mil pares",
-				1, Constantes.ATREZZO);
+				Constantes.HAB_ELAIA, Constantes.ATREZZO);
 		nombre7 = new Nombre(
-				8,
+				Constantes.SUB_VENTANA_ELAIA,
 				"Ventana",
 				"Espera, espera... No es una ventana. Es una PINTADA! Claro, como somos pobres.",
-				1, Constantes.ATREZZO);
+				Constantes.HAB_ELAIA, Constantes.ATREZZO);
 		nombre8 = new Nombre(
-				9,
+				Constantes.SUB_SOUNDWAVE,
 				"Soundwave",
 				"Es un Decepticon, dice que nos va a conquistar a todos, pero primero tiene un concierto. No me preocupa.",
-				6, Constantes.ATREZZO);
-		nombre9 = new Nombre(10, "Puerta", "Una puerta cerrada.", 7,
-				Constantes.ATREZZO);
+				Constantes.HAB_KROSSY, Constantes.ATREZZO);
+		nombre9 = new Nombre(
+				Constantes.SUB_PUERTA, 
+				"Puerta", 
+				"Una puerta cerrada.", 
+				Constantes.HAB_SALON, Constantes.ATREZZO);
+		
+		ListaAcciones.creaAcciones(this);
 	}
 
 	public Habitacion getHabitacion(int idHabitacion) {
 		Habitacion resultado = hell;
-		if (idHabitacion == 1)
+		if (idHabitacion == Constantes.HAB_NURGLE)
 			resultado = hab1;
 		if (idHabitacion == 2)
 			resultado = hab2;
@@ -277,6 +294,17 @@ public class Mundo {
 
 		return resultado;
 	}
+	
+	public Substancia obtenSubstancia(String nomSubstancia) {
+		Substancia substancia = null;
+		substancia = obtenNombre(nomSubstancia);
+		if (substancia == null) {
+			substancia = obtenObjeto(nomSubstancia);
+		}
+		return substancia;
+	}
+	
+	
 
 	public boolean objetoDisponible(String nomObjeto, Habitacion hab) {
 		Objeto obj = obtenObjeto(nomObjeto);
