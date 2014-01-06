@@ -1,5 +1,6 @@
 package fairyNavegator;
 
+import java.util.Iterator;
 import java.util.Scanner;
 
 import fairyNavegator.clases.Constantes;
@@ -21,11 +22,10 @@ public class Navegador {
 	public Navegador() {
 		String comando = ""; // Esta variable ser� lo que el usuario escriba
 
-		habitacionActual = mundo.hab9; // Tienes que empezar en algun sitio
-		// �No? La primera habitacion del
-		// mundo
-		inventario.objeto1 = mundo.objeto1;
-		mundo.objeto1.localizacion = Constantes.LOCALIZACION_INVENTARIO;
+		habitacionActual = mundo.getHabitacion(Constantes.HAB_ELAIA); // Tienes que empezar en algun sitio
+		// No? La primera habitacion del mundo
+		inventario.objeto1 = mundo.getObjeto(Constantes.SUB_ESPADA);
+		inventario.objeto1.localizacion = Constantes.LOCALIZACION_INVENTARIO;
 		habitacionActual.describeHabitacion(); // Dale algo al jugador. Escribe
 		// que ve en el primer cuarto
 		do {
@@ -74,23 +74,7 @@ public class Navegador {
 		}
 
 		if (lineaComando[0].equals("USAR")) {
-			if (mundo.entidadDisponible(lineaComando[1], habitacionActual)) {
-
-				if (mundo.entidadDisponible(lineaComando[3], habitacionActual)) {
-					System.out.println("Usas " + lineaComando[1] + " con "
-							+ lineaComando[3]);
-					Substancia ent1 = mundo.obtenSubstancia(lineaComando[1]);
-					Substancia ent2 = mundo.obtenSubstancia(lineaComando[3]);
-					Accion accion = encuentraAccion(ent1, ent2);
-					accion.resultado.ejecutar(mundo);
-				} else {
-					System.out.println("No hay " + lineaComando[3]
-							+ " a la vista");
-				}
-			} else {
-				System.out.println("No hay " + lineaComando[1] + " a la vista");
-			}
-
+			rutinaUsar(lineaComando, mundo);
 			accionTomada = true;
 		}
 
@@ -107,16 +91,44 @@ public class Navegador {
 
 	}
 
+	private void rutinaUsar(String[] lineaComando, Mundo mundo2) {
+		if(lineaComando.length > 1) {
+			if(lineaComando.length > 2 ) {
+				if (mundo.entidadDisponible(lineaComando[1], habitacionActual)) {
+	
+					if (mundo.entidadDisponible(lineaComando[3], habitacionActual)) {
+						System.out.println("Usas " + lineaComando[1] + " con "
+								+ lineaComando[3]);
+						Substancia ent1 = mundo.obtenSubstancia(lineaComando[1]);
+						Substancia ent2 = mundo.obtenSubstancia(lineaComando[3]);
+						Accion accion = encuentraAccion(ent1, ent2);
+						accion.resultado.ejecutar(mundo);
+					} else {
+						System.out.println("No hay " + lineaComando[3]
+								+ " a la vista");
+					}
+				} else {
+					System.out.println("No hay " + lineaComando[1] + " a la vista");
+				}
+			} else {
+				System.out.println("Usar, el que? y como? con que?");
+			}
+		} else {
+			System.out.println("Usar, el que? y como? y con que? a ver, que no soy adivina, joder.");
+		}
+	}
+
 	private Accion encuentraAccion(Substancia ent1, Substancia ent2) {
 		Accion accion = null;
-		if(mundo.accion1.ent1.id == ent1.id && mundo.accion1.ent2.id == ent2.id) {
-			accion =  mundo.accion1;
-		}
-		if(mundo.accion2.ent1.id == ent1.id && mundo.accion2.ent2.id == ent2.id) {
-			accion =  mundo.accion2;
-		}
-		if(mundo.accion3.ent1.id == ent1.id && mundo.accion3.ent2.id == ent2.id) {
-			accion =  mundo.accion3;
+		Iterator<Accion> iAccion = mundo.acciones.iterator();
+		
+		while (iAccion.hasNext()) {
+			Accion itAccion = iAccion.next();
+			if(itAccion.ent1.id == ent1.id && itAccion.ent2.id == ent2.id) {
+				accion = itAccion;
+				break;
+			}
+				
 		}
 		return accion;
 	}

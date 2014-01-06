@@ -1,5 +1,7 @@
 package fairyNavegator.clases.tiposDato;
 
+import java.util.Iterator;
+
 import fairyNavegator.clases.Constantes;
 import fairyNavegator.clases.Mundo;
 
@@ -47,15 +49,11 @@ public class Habitacion {
 		String textoObjetos = "Aqui hay ";
 		boolean noHayNada = true;
 
-		if(mundo.objeto1.localizacion == this.numHab) { textoObjetos = textoObjetos + mundo.objeto1.nom + ", " ; noHayNada = false;} 
-		if(mundo.objeto2.localizacion == this.numHab) { textoObjetos = textoObjetos + mundo.objeto2.nom + ", " ; noHayNada = false;} 
-		if(mundo.objeto3.localizacion == this.numHab) { textoObjetos = textoObjetos + mundo.objeto3.nom + ", " ; noHayNada = false;} 
-		if(mundo.objeto4.localizacion == this.numHab) { textoObjetos = textoObjetos + mundo.objeto4.nom + ", " ; noHayNada = false;} 
-		if(mundo.objeto5.localizacion == this.numHab) { textoObjetos = textoObjetos + mundo.objeto5.nom + ", " ; noHayNada = false;} 
-		if(mundo.objeto6.localizacion == this.numHab) { textoObjetos = textoObjetos + mundo.objeto6.nom + ", " ; noHayNada = false;} 
-		if(mundo.objeto7.localizacion == this.numHab) { textoObjetos = textoObjetos + mundo.objeto7.nom + ", " ; noHayNada = false;} 
-		if(mundo.objeto8.localizacion == this.numHab) { textoObjetos = textoObjetos + mundo.objeto8.nom + ", " ; noHayNada = false;} 
-		if(mundo.objeto9.localizacion == this.numHab) { textoObjetos = textoObjetos + mundo.objeto9.nom + ", " ; noHayNada = false;}
+		Iterator<Objeto> iObj = mundo.obj.iterator(); 
+		while (iObj.hasNext()) {
+			Objeto obIt = iObj.next(); 
+			if(obIt.localizacion == this.numHab) { textoObjetos = textoObjetos + obIt.nom + ", " ; noHayNada = false;}	
+		}
 		
 		if(noHayNada == true) textoObjetos = "Aqui no hay ningun objeto interesante";
 		
