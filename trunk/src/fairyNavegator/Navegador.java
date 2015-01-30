@@ -32,10 +32,7 @@ public class Navegador {
 			comando = scanner1.nextLine();
 			comando = comando.toUpperCase();
 			interpretaComando(comando);
-		} while (!comando.equals(Constantes.COMANDO_SALIR));
-
-		System.out
-				.println("Abandonas. Me esperaba esa clase de derrota por tu parte");
+		} while (!comando.equals(Constantes.COMANDO_SALIR) && mundo.estoyVivo);
 
 	}
 
@@ -48,7 +45,7 @@ public class Navegador {
 		}
 
 		String[] lineaComando = comando.split(" ");
-		if (lineaComando[0].equals("COGER")) {
+		if (lineaComando[0].equals(Constantes.COMANDO_COGER)) {
 			rutinaCoger(lineaComando, mundo);
 			accionTomada = true;
 		}
@@ -79,6 +76,8 @@ public class Navegador {
 		}
 
 		if (lineaComando[0].equals("SALIR")) {
+			System.out
+					.println("Abandonas. Me esperaba esa clase de derrota por tu parte");
 			accionTomada = true;
 		}
 
@@ -95,17 +94,21 @@ public class Navegador {
 		if(lineaComando.length > 1) {
 			if(lineaComando.length > 2 ) {
 				if (mundo.entidadDisponible(lineaComando[1], habitacionActual)) {
-	
-					if (mundo.entidadDisponible(lineaComando[3], habitacionActual)) {
-						System.out.println("Usas " + lineaComando[1] + " con "
-								+ lineaComando[3]);
-						Substancia ent1 = mundo.obtenSubstancia(lineaComando[1]);
-						Substancia ent2 = mundo.obtenSubstancia(lineaComando[3]);
-						Accion accion = encuentraAccion(ent1, ent2);
-						accion.resultado.ejecutar(mundo);
+
+					if(lineaComando.length > 3 ) {
+						if (mundo.entidadDisponible(lineaComando[3], habitacionActual)) {
+							System.out.println("Usas " + lineaComando[1] + " con "
+									+ lineaComando[3]);
+							Substancia ent1 = mundo.obtenSubstancia(lineaComando[1]);
+							Substancia ent2 = mundo.obtenSubstancia(lineaComando[3]);
+							Accion accion = encuentraAccion(ent1, ent2);
+							accion.resultado.ejecutar(mundo);
+						} else {
+							System.out.println("No hay " + lineaComando[3]
+									+ " a la vista");
+						}
 					} else {
-						System.out.println("No hay " + lineaComando[3]
-								+ " a la vista");
+						System.out.println("Que haga LO QUE?");
 					}
 				} else {
 					System.out.println("No hay " + lineaComando[1] + " a la vista");

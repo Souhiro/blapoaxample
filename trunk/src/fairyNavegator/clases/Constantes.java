@@ -17,6 +17,7 @@ public class Constantes {
 	public static final int ATREZZO = 2;
 	
 	public static final int MUERTO = 100;
+	public static final int ROTO = 101;
 
 	public static final int HAB_ELAIA = 1;
 	public static final int HAB_PASILLO_1 = 2;
@@ -47,6 +48,8 @@ public class Constantes {
 	public static final int SUB_VENTANA_ELAIA = 108;
 	public static final int SUB_SOUNDWAVE = 109;
 	public static final int SUB_PUERTA = 110;
+
+	public static final Object COMANDO_COGER = "COGER";
 
 	 
 }
