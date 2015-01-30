@@ -19,4 +19,8 @@ public class Accion {
 	public interface Resultado {
 		public void ejecutar(Mundo mundo);
 	}
+	
+	public String toString() {
+		return ent1.nom + " " + ent2.nom;
+	}
 }

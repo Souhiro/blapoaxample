@@ -2,7 +2,9 @@ package fairyNavegator.clases.tiposDato;
 
 public class Substancia {
 	public int id;
-	
+
+	public String nom;
+	public String desc;
 	public int localizacion;
 	
 	public int propiedad1;

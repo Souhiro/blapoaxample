@@ -22,6 +22,8 @@ public class Mundo {
 	public List<Nombre> nom = new ArrayList<Nombre>();
 
 	public List<Accion> acciones = new ArrayList<Accion>();
+	
+	public boolean estoyVivo = true;
 
 	public Mundo() {
 		ListaHabitaciones.creaHabitaciones(this.hab, this);
