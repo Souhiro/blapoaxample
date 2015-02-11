@@ -15,8 +15,8 @@ import fairyNavegator.clases.tiposDato.Substancia;
 public class Navegador {
 
 	Habitacion habitacionActual;
-	Inventario inventario = new Inventario();
 	Mundo mundo = new Mundo();
+	Inventario inventario = new Inventario(mundo);
 	Scanner scanner1 = new Scanner(System.in);
 
 	public Navegador() {
@@ -24,8 +24,7 @@ public class Navegador {
 
 		habitacionActual = mundo.getHabitacion(Constantes.HAB_ELAIA); // Tienes que empezar en algun sitio
 		// No? La primera habitacion del mundo
-		inventario.objeto1 = mundo.getObjeto(Constantes.SUB_ESPADA);
-		inventario.objeto1.localizacion = Constantes.LOCALIZACION_INVENTARIO;
+		inventario.tomar(Constantes.SUB_ESPADA);
 		habitacionActual.describeHabitacion(); // Dale algo al jugador. Escribe
 		// que ve en el primer cuarto
 		do {
