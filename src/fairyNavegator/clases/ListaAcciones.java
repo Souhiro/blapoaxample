@@ -29,7 +29,7 @@ public class ListaAcciones {
 				} else {
 					System.out.println("Vale, me cargo al jodio Chicharo de Lis con mi espada");
 					mundo.getNombre(Constantes.SUB_WYNNA).desc = "El cadaver putrefacto de Wynna Kessev, el ex-chicharo de Lis";
-					mundo.getNombre(Constantes.SUB_WYNNA).propiedad2 = Constantes.MUERTO;
+					mundo.getNombre(Constantes.SUB_WYNNA).ponPropiedad(Constantes.MUERTO);
 				}
 			}
 		});
@@ -63,7 +63,7 @@ public class ListaAcciones {
 					System.out.println("No se como podre mirarme luego en el espejo, esta tia ha hecho de todo por mi.");
 					System.out.println("Hijaputa, si hasta muerta es increiblemente sexy");
 					mundo.getNombre(Constantes.SUB_NURGLE).desc = "El sexy cadaver de Nurgle Luzpodrida, mi Ex-Mascota";
-					mundo.getNombre(Constantes.SUB_NURGLE).propiedad2 = Constantes.MUERTO;
+					mundo.getNombre(Constantes.SUB_NURGLE).ponPropiedad(Constantes.MUERTO);
 				}
 			}
 		});
@@ -98,11 +98,11 @@ public class ListaAcciones {
 			@Override
 			public void ejecutar(Mundo mundo) {
 				if(mundo.getNombre(Constantes.SUB_CAMA_ELAIA).incluyePropiedad(Constantes.ROTO)) {
-					System.out.println("Destrozo más mi pobre cama");
+					System.out.println("Destrozo AUN MAS mi pobre cama");
 				} else {
 					System.out.println("En un arrebato de idiotez, me cargo mi cama");
 					mundo.getNombre(Constantes.SUB_CAMA_ELAIA).desc = "Gracias, jugador. Ahora tendré que dormir en el puto suelo";
-					mundo.getNombre(Constantes.SUB_CAMA_ELAIA).propiedad2 = Constantes.ROTO;
+					mundo.getNombre(Constantes.SUB_CAMA_ELAIA).ponPropiedad(Constantes.ROTO);
 				}
 			}
 		});

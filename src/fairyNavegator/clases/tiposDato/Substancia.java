@@ -1,5 +1,8 @@
 package fairyNavegator.clases.tiposDato;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Substancia {
 	public int id;
 
@@ -7,11 +10,17 @@ public class Substancia {
 	public String desc;
 	public int localizacion;
 	
-	public int propiedad1;
-	public int propiedad2;
-	public int propiedad3;
+	public List<Integer> propiedades = new ArrayList<Integer>();
 	
 	public boolean incluyePropiedad(int propiedad) {
-		return (this.propiedad1 == propiedad || this.propiedad2 == propiedad || this.propiedad3 == propiedad);
+		return this.propiedades.contains(propiedad);
+	}
+	
+	public void ponPropiedad(int propiedad) {
+		this.propiedades.add(propiedad);
+	}
+	
+	public void quitaPropiedad(int propiedad) {
+		this.propiedades.remove(propiedad);
 	}
 }

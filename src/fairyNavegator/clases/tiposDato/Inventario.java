@@ -1,44 +1,46 @@
 package fairyNavegator.clases.tiposDato;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import fairyNavegator.clases.Constantes;
+import fairyNavegator.clases.Mundo;
 
 public class Inventario {
-	public Objeto objeto1;
-	public Objeto objeto2;
-	public Objeto objeto3;
-	public Objeto objeto4;
-	public Objeto objeto5;
+	public List<Objeto> lObjetos;
+	public static final int MAX_OBJETOS = 5;
+	public Mundo mundo;
+	
+	public Inventario(Mundo mundo) {
+		this.mundo = mundo;
+		this.lObjetos = new ArrayList<Objeto>();
+	}
 	
 	public String listarInventario() {
 		String salida = "";
-		if (objeto1 != null) salida = salida + objeto1.nom + ", ";
-		if (objeto2 != null) salida = salida + objeto2.nom + ", ";
-		if (objeto3 != null) salida = salida + objeto3.nom + ", ";
-		if (objeto4 != null) salida = salida + objeto4.nom + ", ";
-		if (objeto5 != null) salida = salida + objeto5.nom + ", ";
+		for(Objeto objeto : lObjetos) {
+			if (objeto != null) {
+				salida = salida + objeto.nom + ", ";
+			}
+		}
 		
 		if (salida.equals("")) { 
-			salida = "No tienes nada";
+			salida = "No tengo na de na. Soy pobre cual rata de cloaca.";
 		} else {
-			salida = "Tienes " + salida;
+			salida = "Tengo " + salida + ".";
 		}
 		
 		return salida;
 	}
 	
 	public boolean inventarioLleno() {
-		return (objeto1 != null && objeto2 != null && objeto3 != null && objeto4 != null && objeto5 != null);
+		return (lObjetos.size() >= Inventario.MAX_OBJETOS);
 	}
 	
 	public void coger(Objeto objeto, Habitacion habitacionActual) {
 		if (!inventarioLleno()) {
 			if (objeto.localizacion == habitacionActual.numHab) {
-				objeto.localizacion = Constantes.LOCALIZACION_INVENTARIO;
-				if(objeto1 == null) objeto1 = objeto; 
-				else if(objeto2 == null) objeto2 = objeto;
-				else if(objeto3 == null) objeto3 = objeto;
-				else if(objeto4 == null) objeto4 = objeto;
-				else if(objeto5 == null) objeto5 = objeto;
+				tomar(objeto);
 				System.out.println("Ahora soy el orgulloso propietario de un " + objeto.nom + ".");
 			} else {
 				System.out.println("No veo ningun " + objeto.nom + " por aqui.");
@@ -48,26 +50,47 @@ public class Inventario {
 		}
 	}
 	
+	/**
+	 * Tomar puede usarse para forzar un objeto en el inventario, aunque no este "Disponible"
+	 * en la misma sala en que estas. No es un comando accesible al usuario
+	 * @param objeto
+	 */
+	public void tomar(Objeto objeto) {
+		if (!inventarioLleno()) {
+			objeto.localizacion = Constantes.LOCALIZACION_INVENTARIO;
+			lObjetos.add(objeto);
+		}
+	}
+	
+	/**
+	 * Tomar puede usarse para forzar un objeto en el inventario, aunque no este "Disponible"
+	 * en la misma sala en que estas. No es un comando accesible al usuario
+	 * @param idObjeto
+	 */
+	public void tomar(int idObjeto) {
+		Objeto objeto = mundo.getObjeto(idObjeto);
+		tomar(objeto);
+	}
+	
 	public void dejar(Objeto objeto, Habitacion habitacionActual) {
 		if(objeto.localizacion == Constantes.LOCALIZACION_INVENTARIO) {
 				objeto.localizacion = habitacionActual.numHab;
-				if(objeto1 == objeto) objeto1 = null; 
-				else if(objeto2 == objeto) objeto2 = null;
-				else if(objeto3 == objeto) objeto3 = null;
-				else if(objeto4 == objeto) objeto4 = null;
-				else if(objeto5 == objeto) objeto5 = null;
+				lObjetos.remove(objeto);
 				System.out.println("He tirado al suelo mi " + objeto.nom + ".");
 		} else {
 			System.out.println("No llevo ningun " + objeto.nom);
 		}
 	}
+
+	
+	public void perder(Objeto objeto) {
+		if(objeto.localizacion == Constantes.LOCALIZACION_INVENTARIO) {
+			lObjetos.remove(objeto);
+		}
+	}
 	
 	public boolean poseido(Objeto objeto) {
-		if(objeto1 == objeto) return true; 
-		if(objeto2 == objeto) return true;
-		if(objeto3 == objeto) return true;
-		if(objeto4 == objeto) return true;
-		if(objeto5 == objeto) return true;
+		if(lObjetos.contains(objeto));
 		return false;
 	}
 }
