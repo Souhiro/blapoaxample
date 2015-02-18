@@ -1,5 +1,7 @@
 package com.proyectoLudus.training.helloWorld;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,6 +10,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Scanner;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -56,6 +59,8 @@ public class HelloWorldSWT {
 		} else {
 			mid = new JTextArea(describeHabitacion);
 		}
+		
+		mid.setSize(mid.getParent().getSize());
 
 		if(this.habitacionActual.salidaNorte != Constantes.SIN_SALIDA) {mButtons.get("N").setEnabled(true);} else {mButtons.get("N").setEnabled(false);} 
 		if(this.habitacionActual.salidaSur != Constantes.SIN_SALIDA) {mButtons.get("S").setEnabled(true);} else {mButtons.get("S").setEnabled(false);} 
@@ -311,6 +316,8 @@ public class HelloWorldSWT {
         botPanel.add(new JPanel());
         JButton butSur = new JButton();
         botPanel.add(butSur);
+        botPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+        
         mainPanel.add(botPanel);
         
         butNorte.setText("N");
@@ -342,7 +349,10 @@ public class HelloWorldSWT {
         
         topPanel.add(new JLabel("Top"));
         mid = new JTextArea("Mid");
-        midPanel.add(mid);
+        mid.setLineWrap(true);
+        mid.setWrapStyleWord(true);
+        mid.setLayout(new BorderLayout());
+        midPanel.add(mid, BorderLayout.WEST );
         frame.add(mainPanel);
 
         //Lo apretujamos todo en una ventana del minimo tamaño, y lo mostramos por pantalla
