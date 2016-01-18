@@ -1,0 +1,1 @@
+Some silly Text Adventure, based on FairyTale RPG
