@@ -1,8 +1,10 @@
 package fairyNavegator.clases;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import fairyNavegator.clases.tiposDato.Accion;
 import fairyNavegator.clases.tiposDato.Habitacion;
@@ -23,6 +25,8 @@ public class Mundo {
 
 	public List<Accion> acciones = new ArrayList<Accion>();
 	
+	public Set<Integer> hFlags = new HashSet<Integer>();
+	
 	public boolean estoyVivo = true;
 
 	public Mundo() {
@@ -37,6 +41,7 @@ public class Mundo {
 		goatse = new Nombre(0, "GOATSE", "No deberias de ver esto JAMAS", -1);
 		
 		ListaAcciones.creaAcciones(acciones, this);
+		
 	}
 
 	public Habitacion getHabitacion(int idHabitacion) {

@@ -91,15 +91,18 @@ public class Navegador {
 
 	private void rutinaUsar(String[] lineaComando, Mundo mundo2) {
 		if(lineaComando.length > 1) {
-			if(lineaComando.length > 2 ) {
+			if(lineaComando.length >= 2 ) {
 				if (mundo.entidadDisponible(lineaComando[1], habitacionActual)) {
 
-					if(lineaComando.length > 3 ) {
-						if (mundo.entidadDisponible(lineaComando[3], habitacionActual)) {
-							System.out.println("Usas " + lineaComando[1] + " con "
-									+ lineaComando[3]);
+					if(lineaComando.length > 3 || lineaComando.length == 2) {
+						if (lineaComando.length == 2 || mundo.entidadDisponible(lineaComando[3], habitacionActual)) {
+							String lineaResult = lineaComando.length == 2 ?  "Usas " + lineaComando[1] : "Usas " + lineaComando[1] + " con "
+									+ lineaComando[3];
+							System.out.println(lineaResult);
 							Substancia ent1 = mundo.obtenSubstancia(lineaComando[1]);
-							Substancia ent2 = mundo.obtenSubstancia(lineaComando[3]);
+							Substancia ent2 = null;;
+							if(lineaComando.length > 3)
+								ent2 = mundo.obtenSubstancia(lineaComando[3]);
 							Accion accion = encuentraAccion(ent1, ent2);
 							accion.resultado.ejecutar(mundo);
 						} else {
@@ -122,11 +125,15 @@ public class Navegador {
 
 	private Accion encuentraAccion(Substancia ent1, Substancia ent2) {
 		Accion accion = null;
+		Integer ent1ID = ent1.id;
+		Integer ent2ID = ent2==null ? null: ent2.id;
 		Iterator<Accion> iAccion = mundo.acciones.iterator();
 		
 		while (iAccion.hasNext()) {
 			Accion itAccion = iAccion.next();
-			if(itAccion.ent1.id == ent1.id && itAccion.ent2.id == ent2.id) {
+			Integer accionEnt1ID = itAccion.ent1.id;
+			Integer accionEnt2ID = itAccion.ent2 == null ? null : itAccion.ent2.id;
+			if(accionEnt1ID == ent1ID && accionEnt2ID == ent2ID) {
 				accion = itAccion;
 				break;
 			}
@@ -204,48 +211,53 @@ public class Navegador {
 	}
 
 	private void mueve(String comando) {
+		if(mundo.hFlags.contains(Constantes.FLAG_TACONES)) {
+			System.out.println("Con estos tacones no puedo dar ni un paso!!!");
+			
+		} else {
 
-		if (comando.equals(Constantes.NORTE)) {
-			if (habitacionActual.salidaNorte != Constantes.SIN_SALIDA) {
-				System.out.println("Vas al Norte");
-				habitacionActual = mundo
-						.getHabitacion(habitacionActual.salidaNorte);
-			} else {
-				System.out.println("No puedes ir al Norte desde aqui");
+			if (comando.equals(Constantes.NORTE)) {
+				if (habitacionActual.salidaNorte != Constantes.SIN_SALIDA) {
+					System.out.println("Vas al Norte");
+					habitacionActual = mundo
+							.getHabitacion(habitacionActual.salidaNorte);
+				} else {
+					System.out.println("No puedes ir al Norte desde aqui");
+				}
 			}
+	
+			if (comando.equals(Constantes.SUR)) {
+				if (habitacionActual.salidaSur != Constantes.SIN_SALIDA) {
+					System.out.println("Vas al Sur");
+					habitacionActual = mundo
+							.getHabitacion(habitacionActual.salidaSur);
+				} else {
+					System.out.println("No puedes ir al Sur desde aqui");
+				}
+			}
+	
+			if (comando.equals(Constantes.ESTE)) {
+				if (habitacionActual.salidaEste != Constantes.SIN_SALIDA) {
+					System.out.println("Vas al Este");
+					habitacionActual = mundo
+							.getHabitacion(habitacionActual.salidaEste);
+				} else {
+					System.out.println("No puedes ir al Este desde aqui");
+				}
+			}
+	
+			if (comando.equals(Constantes.OESTE)) {
+				if (habitacionActual.salidaOeste != Constantes.SIN_SALIDA) {
+					System.out.println("Vas al Oeste");
+					habitacionActual = mundo
+							.getHabitacion(habitacionActual.salidaOeste);
+				} else {
+					System.out.println("No puedes ir al Oeste desde aqui");
+				}
+			}
+			habitacionActual.describeHabitacion();
 		}
 
-		if (comando.equals(Constantes.SUR)) {
-			if (habitacionActual.salidaSur != Constantes.SIN_SALIDA) {
-				System.out.println("Vas al Sur");
-				habitacionActual = mundo
-						.getHabitacion(habitacionActual.salidaSur);
-			} else {
-				System.out.println("No puedes ir al Sur desde aqui");
-			}
-		}
-
-		if (comando.equals(Constantes.ESTE)) {
-			if (habitacionActual.salidaEste != Constantes.SIN_SALIDA) {
-				System.out.println("Vas al Este");
-				habitacionActual = mundo
-						.getHabitacion(habitacionActual.salidaEste);
-			} else {
-				System.out.println("No puedes ir al Este desde aqui");
-			}
-		}
-
-		if (comando.equals(Constantes.OESTE)) {
-			if (habitacionActual.salidaOeste != Constantes.SIN_SALIDA) {
-				System.out.println("Vas al Oeste");
-				habitacionActual = mundo
-						.getHabitacion(habitacionActual.salidaOeste);
-			} else {
-				System.out.println("No puedes ir al Oeste desde aqui");
-			}
-		}
-
-		habitacionActual.describeHabitacion();
 	}
 
 	public static boolean isObjecto(Substancia s) {

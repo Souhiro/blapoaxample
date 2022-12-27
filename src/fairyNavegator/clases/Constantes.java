@@ -50,6 +50,8 @@ public class Constantes {
 	public static final int SUB_PUERTA = 110;
 
 	public static final Object COMANDO_COGER = "COGER";
+	
+	public static final int FLAG_TACONES = 1;
 
 	 
 }

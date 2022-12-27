@@ -23,4 +23,8 @@ public class Substancia {
 	public void quitaPropiedad(int propiedad) {
 		this.propiedades.remove(propiedad);
 	}
+	
+	public String toString() {
+		return this.nom;
+	}
 }

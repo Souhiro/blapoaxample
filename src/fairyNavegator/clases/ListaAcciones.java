@@ -3,6 +3,8 @@ package fairyNavegator.clases;
 import java.util.List;
 
 import fairyNavegator.clases.tiposDato.Accion;
+import fairyNavegator.clases.tiposDato.Habitacion;
+import fairyNavegator.clases.tiposDato.Objeto;
 import fairyNavegator.clases.tiposDato.Substancia;
 import fairyNavegator.clases.tiposDato.Accion.Resultado;
 
@@ -17,6 +19,7 @@ public class ListaAcciones {
 		acciones.add(creaAccionMatarCama(mundo));
 		acciones.add(creaAccionMatarPoster(mundo));
 		acciones.add(creaAccionMatarSoundwave(mundo));
+		acciones.add(creaAccionPonerTacones(mundo));
 		
 	}
 
@@ -101,7 +104,7 @@ public class ListaAcciones {
 					System.out.println("Destrozo AUN MAS mi pobre cama");
 				} else {
 					System.out.println("En un arrebato de idiotez, me cargo mi cama");
-					mundo.getNombre(Constantes.SUB_CAMA_ELAIA).desc = "Gracias, jugador. Ahora tendr� que dormir en el puto suelo";
+					mundo.getNombre(Constantes.SUB_CAMA_ELAIA).desc = "Gracias, jugador. Ahora tendr� que dormir en el puto suelo";
 					mundo.getNombre(Constantes.SUB_CAMA_ELAIA).ponPropiedad(Constantes.ROTO);
 				}
 			}
@@ -126,15 +129,40 @@ public class ListaAcciones {
 			@Override
 			public void ejecutar(Mundo mundo) {
 				System.out.println("Le pego a Soundwave");
-				System.out.println("El chaval es un pu�etero MECHA. Una de las creaciones supremas. El muy bestia saca un fusil de positrones y me mata, MUCHO");
+				System.out.println("El chaval es un pu�etero MECHA. Una de las creaciones supremas. El muy bestia saca un fusil de positrones y me mata, MUCHO");
 				System.out.println("Ahora estoy muerta, gracias a ti, jugador. Muchas gracias.");
 				mundo.estoyVivo = false;
 				
+			}
+			@Override
+			public String toString() {
+				return "Atacar a Decepticon";
 			}
 		});
 		
 		return accion1;
 	}
-	
-	
+
+	private static Accion creaAccionPonerTacones(Mundo mundo) {
+		Accion accion1 = new Accion(1, (Substancia)mundo.getObjeto(Constantes.SUB_TACONES), new Resultado() {
+			@Override
+			public void ejecutar(Mundo mundo) {
+				if(mundo.hFlags.contains(Constantes.FLAG_TACONES)) {
+					System.out.println("Me quito los tacones ¡Menos mal! ¡Quien inventó esto odiaba a las mujeres!");
+					System.out.println("¿Que? ¿Que los hombres llevaron tacones primero, y las mujeres decidimos ponernoslos despues? ¡Horror! ¡El feminismo nos traiciona a las mujeres!");
+					mundo.hFlags.remove(Constantes.FLAG_TACONES);
+				} else {
+					System.out.println("Me pongo estos tacones de 25cm. Y ahora no puedo ni andar");
+					mundo.hFlags.add(Constantes.FLAG_TACONES);
+				}
+				
+			}
+			@Override
+			public String toString() {
+				return "Ponerte Tacones";
+			}
+		});
+		
+		return accion1;
+	}
 }
