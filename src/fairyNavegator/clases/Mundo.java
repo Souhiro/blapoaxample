@@ -64,9 +64,7 @@ public class Mundo {
 		Objeto resultado = sida;
 
 		//Recorremos la lista usando el operador Iterator
-		Iterator<Objeto> iObjeto = obj.iterator();
-		while(iObjeto.hasNext()) {
-			Objeto itObjeto = iObjeto.next();
+		for(Objeto itObjeto : obj) {
 			if (itObjeto.id == idObjeto) {
 				resultado = itObjeto;
 				break;

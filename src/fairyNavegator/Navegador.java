@@ -104,7 +104,11 @@ public class Navegador {
 							if(lineaComando.length > 3)
 								ent2 = mundo.obtenSubstancia(lineaComando[3]);
 							Accion accion = encuentraAccion(ent1, ent2);
-							accion.resultado.ejecutar(mundo);
+							if(accion != null)
+								accion.resultado.ejecutar(mundo); 
+							else 
+								System.out.println("Ni idea de como se hace eso, chaval");
+								
 						} else {
 							System.out.println("No hay " + lineaComando[3]
 									+ " a la vista");

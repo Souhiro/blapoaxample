@@ -20,6 +20,8 @@ public class ListaAcciones {
 		acciones.add(creaAccionMatarPoster(mundo));
 		acciones.add(creaAccionMatarSoundwave(mundo));
 		acciones.add(creaAccionPonerTacones(mundo));
+		acciones.add(creaAccionUsarCama(mundo));
+		acciones.add(creaAccionUsarNurgle(mundo));
 		
 	}
 
@@ -144,7 +146,7 @@ public class ListaAcciones {
 	}
 
 	private static Accion creaAccionPonerTacones(Mundo mundo) {
-		Accion accion1 = new Accion(1, (Substancia)mundo.getObjeto(Constantes.SUB_TACONES), new Resultado() {
+		Accion accion1 = new Accion(10, (Substancia)mundo.getObjeto(Constantes.SUB_TACONES), new Resultado() {
 			@Override
 			public void ejecutar(Mundo mundo) {
 				if(mundo.hFlags.contains(Constantes.FLAG_TACONES)) {
@@ -160,6 +162,53 @@ public class ListaAcciones {
 			@Override
 			public String toString() {
 				return "Ponerte Tacones";
+			}
+		});
+		
+		return accion1;
+	}
+
+	private static Accion creaAccionUsarCama(Mundo mundo) {
+		Resultado res = new Resultado() {
+			@Override
+			public void ejecutar(Mundo mundo) {
+				if(mundo.getNombre(Constantes.SUB_CAMA_ELAIA).incluyePropiedad(Constantes.ROTO)) {
+					System.out.println("En una cama asi de rota? Casi que mejor duermo en el suelo");
+				} else {
+					System.out.println("Me quito la ropa. Me meto en la cama, me doy una gran sobada y me levanto realmente bien");
+					if(mundo.getNombre(Constantes.SUB_NURGLE).incluyePropiedad(Constantes.MUERTO)) {
+						System.out.println("Ah. Y me vuelvo a poner la ropa. Que la exhibiscionista ERA Nurgle");
+					} else {
+						System.out.println("Ah. Y me vuelvo a poner la ropa. Que la exhibiscionista es Nurgle");
+					}
+				}
+			}
+			@Override
+			public String toString() {
+				return "Usar la Cama";
+			}
+		};
+		Accion accion1 = new Accion(1, (Substancia)mundo.getNombre(Constantes.SUB_CAMA_ELAIA), null, res);
+		
+		return accion1;
+	}
+	
+
+
+	private static Accion creaAccionUsarNurgle(Mundo mundo) {
+		Accion accion1 = new Accion(11, (Substancia)mundo.getNombre(Constantes.SUB_NURGLE), new Resultado() {
+			@Override
+			public void ejecutar(Mundo mundo) {
+				if(!mundo.getNombre(Constantes.SUB_NURGLE).incluyePropiedad(Constantes.MUERTO)) {
+					System.out.println("Vale que en ocasiones ella sea una mujer objeto, que sea la que vende más muñecos de la serie y hace más fanservice,\npero ahora mismo no tengo ganas de usarla. No es TAN mujer-objeto");
+				} else {
+					System.out.println("¿Quieres que use el cadaver de mi amiga? ¿Que te crees que soy? ¿Hannibal Lecter?");
+				}
+				
+			}
+			@Override
+			public String toString() {
+				return "Usar a Nurgle";
 			}
 		});
 		
